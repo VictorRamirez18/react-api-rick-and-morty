@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+.navbar {
+  background-color: #18a322;
+}
+.card {
+  background-color: #17998e;
+}
+.ff-l {
+  font-family: "Lucida Bright";
+}
+.characterCard {
+  background-color: #18a370;
+}

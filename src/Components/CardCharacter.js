@@ -1,14 +1,17 @@
-import React, { Fragment } from "react";
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-function CardCharacter({ name, specie, image, url }) {
+function CardCharacter({ name, specie, image, index }) {
   return (
-    <Link to="/Character" className="border h-auto border-black">
-      <div className="">
-        <h2>{name}</h2>
-        <p>Specie: {specie}</p>
-        <img src={image}></img>
+    <Link to={`/Character/${index}`} className="w-2/3 sm:w-1/3 md:w-1/5 lg:1/5">
+      <div className="card p-2 text-lg bg-blue-200 h-auto w-full flex flex-col justify-center text-center shadow-2xl ff-l">
+        <p className="my-2">
+          <b>{name}</b>
+        </p>
+        <p className="mt-2 mb-4">
+          <b>Specie: </b>
+          {specie}
+        </p>
+        <img src={image} alt={name}></img>
       </div>
     </Link>
   );

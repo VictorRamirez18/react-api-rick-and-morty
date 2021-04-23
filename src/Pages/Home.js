@@ -1,10 +1,12 @@
 // import Home from "../../../HooksReact/hooksreact/src/Pages/Home";
 import { useState, useEffect } from "react";
 import CardCharacter from "../Components/CardCharacter.js";
+import Navbar from "../Components/Navbar.js";
 
 function Home() {
   const [characters, setCharacters] = useState({});
   const [loaded, setLoaded] = useState(false);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     fetch("https://rickandmortyapi.com/api/character")
@@ -15,20 +17,27 @@ function Home() {
       });
   }, []);
 
+  const handleChange = (event) => {
+    const { value } = event.target;
+    setSearch(value);
+  };
+
   return (
     <div className="App flex flex-col flex-wrap">
-      <div>
-        <h2 className="bg-red-400">Navbar</h2>
-      </div>
-      <div className="flex flex-wrap justify-center my-2 gap-4">
+      <Navbar onChange={handleChange} />
+      <div className="flex flex-wrap justify-center my-8 gap-4">
         {loaded &&
-          characters.map((item) => {
+          characters.map((item, index) => {
+            if (!item.name.toLowerCase().startsWith(search.toLowerCase()))
+              return false;
             return (
               <CardCharacter
                 name={item.name}
                 specie={item.species}
                 image={item.image}
                 url={item.url}
+                index={index + 1}
+                key={index}
               />
             );
           })}
